@@ -8,7 +8,7 @@ import c3d
 import numpy as np
 from natsort import natsorted
 
-from libs.utils import Camera, get_kpts3d_pixel, normalize_kpts, split_data
+from asplibs.utils import Camera, get_kpts3d_pixel, normalize_kpts, split_data
 
 
 def make_dir(path):
