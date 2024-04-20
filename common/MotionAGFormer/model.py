@@ -1,3 +1,8 @@
+"""
+MotionAGFormer model implementation is copied from the following repository:
+https://github.com/TaatiTeam/MotionAGFormer
+"""
+
 from collections import OrderedDict
 
 import torch
