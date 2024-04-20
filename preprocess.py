@@ -123,16 +123,16 @@ def process_data(camera_files, data2d_file, gt_kpts_file, frames=27):
         scales_list (ndarray): List of scales split into clips.
         denom_size_list (list): List of denormalization sizes.
     """
-    data_name = gt_kpts_file.split('/')[2]
+    dataset_name = gt_kpts_file.split('/')[2]
     data_split = gt_kpts_file.split('/')[3]
     if data_split == 'train':
         stride = 27 // 3
     else:
         stride = 27
 
-    if data_name == 'ASPset-510':
+    if dataset_name == 'ASPset-510':
         gt_kpts3d_world = load_gt_world_asp(gt_kpts_file)  # (F, 17, 3)
-    elif data_name == 'Runner':
+    elif dataset_name == 'Runner':
         gt_kpts3d_world_original = np.load(gt_kpts_file)
         gt_kpts3d_world = gt_kpts3d_world_original[::2] * 1000
 
@@ -148,7 +148,7 @@ def process_data(camera_files, data2d_file, gt_kpts_file, frames=27):
         camera = load_camera(camera_file)
 
         pred_kpts2d, pred_score2d, img_size = load_data2d(data_2d_file)
-        if data_name == 'Runner':
+        if dataset_name == 'Runner':
             pred_kpts2d = pred_kpts2d[::2]
             pred_score2d = pred_score2d[::2]
         input_kpts2d = normalize_kpts(pred_kpts2d, w=img_size[1], h=img_size[0])
@@ -202,18 +202,18 @@ def main():
     frames = args.frames
     data_root = args.data_root
     camera_root = os.path.join(data_root, 'cameras')
-    data_name = data_root.split('/')[2]
-    if data_name == 'ASPset-510':
-        output_root = data_root.replace(data_name, f'ASP-{frames}')
-    elif data_name == 'Runner':
-        output_root = data_root.replace(data_name, f'R-{frames}')
+    dataset_name = data_root.split('/')[2]
+    if dataset_name == 'ASPset-510':
+        output_root = data_root.replace(dataset_name, f'ASP-{frames}')
+    elif dataset_name == 'Runner':
+        output_root = data_root.replace(dataset_name, f'R-{frames}')
     data_split = data_root.split('/')[-1]
     calib_root = os.path.join(os.path.dirname(output_root), f'calib_{data_split}')
     make_dir(output_root)
     make_dir(calib_root)
 
     data_2d_dirs = glob.glob(os.path.join(data_root, 'data_2d', '*'))
-    if data_name == 'Runner':
+    if dataset_name == 'Runner':
         camera_files = natsorted(glob.glob(os.path.join(camera_root, '*.pkl')))
 
     data_num = 0
@@ -225,7 +225,7 @@ def main():
         data_2d_files = glob.glob(os.path.join(data_2d_dir, '*.pkl'))
         data_2d_files = natsorted(data_2d_files)
 
-        if data_name == 'ASPset-510':
+        if dataset_name == 'ASPset-510':
             camera_dir = os.path.join(camera_root, data_name.split('-')[0])
             camera_files = natsorted(glob.glob(os.path.join(camera_dir, '*.json')))
 
