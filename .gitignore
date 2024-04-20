@@ -1,7 +1,7 @@
 .DS_Store
 @eaDir/
 data/
-
+common/MotionAGFormer/checkpoint/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
