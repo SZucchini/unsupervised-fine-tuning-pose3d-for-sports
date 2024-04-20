@@ -79,7 +79,7 @@ class Camera:
             Homogeneous 3D points in camera space.
         """
         points_3d = ensure_homogeneous(points_3d, d=3)
-        return points_3d @ self.extrinsic_matrix.T
+        return points_3d @ self.extrinsic.T
 
     def camera_to_image_space(self, points_3d):
         """Transform points from 3D camera space to 2D image space.
@@ -91,7 +91,7 @@ class Camera:
             Homogeneous 2D points in image space.
         """
         points_3d = ensure_homogeneous(points_3d, d=3)
-        return points_3d @ self.intrinsic_matrix.T
+        return points_3d @ self.intrinsic.T
 
     def world_to_image_space(self, points_3d):
         """Transform points from 3D world space to 2D image space.
