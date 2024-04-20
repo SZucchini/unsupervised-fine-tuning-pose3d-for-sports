@@ -72,15 +72,12 @@ def init_neptune(cfg):
     Returns:
         run (neptune.run.Run): Neptune run.
     """
-    if cfg.NEPTUNE.USE:
-        with open(cfg.NEPTUNE.TOKEN_PATH, "r") as f:
-            api_token = f.readline().rstrip("\n")
-        run = neptune.init_run(
-            project=cfg.NEPTUNE.PROJECT,
-            api_token=api_token,
-        )
-    else:
-        run = None
+    with open(cfg.NEPTUNE.TOKEN_PATH, "r") as f:
+        api_token = f.readline().rstrip("\n")
+    run = neptune.init_run(
+        project=cfg.NEPTUNE.PROJECT,
+        api_token=api_token,
+    )
     return run
 
 
@@ -91,7 +88,7 @@ def upload_cfg(cfg, run):
         cfg (CfgNode): Configuration.
         run (neptune.run.Run): Neptune run.
     """
-    cfg_path = cfg.TUNING.WORKSPACE + '/config.yaml'
+    cfg_path = cfg.WORKSPACE + '/config.yaml'
     with open(cfg_path, 'w') as f:
         f.write(cfg.dump())
     if run is not None:
@@ -104,11 +101,11 @@ def create_workspace(cfg):
     Args:
         cfg (CfgNode): Configuration.
     """
-    if not os.path.exists(cfg.TUNING.WORKSPACE):
-        os.makedirs(cfg.TUNING.WORKSPACE)
+    if not os.path.exists(cfg.WORKSPACE):
+        os.makedirs(cfg.WORKSPACE)
     work_dirs = ["/dataset", "/evaluation", "/checkpoint"]
     for work_dir in work_dirs:
-        path = cfg.TUNING.WORKSPACE + work_dir
+        path = cfg.WORKSPACE + work_dir
         if not os.path.exists(path):
             os.makedirs(path)
 
@@ -149,3 +146,93 @@ def load_models(cfg):
     pose_lifter.eval()
     pose_lifter.to(cfg.DEVICE)
     return detector, pose_estimator, pose_lifter
+
+
+def main():
+    """Main function.
+
+    Args:
+        config (str): Configuration file path.
+        workspace (str): Workspace directory.
+        neptune (bool): Neptune flag.
+        neptune_project (str): Neptune project.
+        neptune_token (str): Neptune token path.
+    """
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", type=str, default="./config/MotionAGFormer.yaml")
+    parser.add_argument("--workspace", type=str, default="./data/run_001/results")
+    parser.add_argument("--neptune", action="store_true")
+    parser.add_argument("--neptune_project", type=int, default="username/project")
+    parser.add_argument("--neptune_token", type=str, default="./token/neptune.txt")
+    args = parser.parse_args()
+
+    opts = [
+        "WORKSPACE", args.workspace,
+        "NEPTUNE.PROJECT", args.neptune_project,
+        "NEPTUNE.TOKEN_PATH", args.neptune_token
+    ]
+    cfg = get_cfg(args.config, opts)
+    logger.debug("Config data\n{}\n".format(cfg))
+
+    if args.neptune:
+        run = init_neptune(cfg)
+    else:
+        run = None
+    upload_cfg(cfg, run)
+    set_seed(cfg.SEED)
+    create_workspace(cfg)
+
+    logger.debug("Loading models ...")
+    detector, pose_estimator, pose_lifter = load_models(cfg)
+
+    logger.debug("Loading ground truth data for evaluation ...")
+    gt_dict = get_gt_dict(cfg)
+    with open(cfg.WORKSPACE + '/evaluation/gt_dict.pkl', 'wb') as f:
+        pickle.dump(gt_dict, f)
+
+    logger.debug("Building initial data ...")
+    dataset_dict, eval_dict = get_data_dict(
+        cfg,
+        pose_lifter,
+        get_data2d(cfg, detector, pose_estimator)
+    )
+    with open(cfg.WORKSPACE + '/evaluation/init_dict.pkl', 'wb') as f:
+        pickle.dump(eval_dict, f)
+    logger.debug("Finished.")
+
+    logger.debug("Initial Evaluation")
+    eval_calib(gt_dict, eval_dict)
+    eval_mono(gt_dict, eval_dict)
+
+    for itr in range(cfg.TUNING.ITERATIONS):
+        logger.debug("Iteration %s start ...", itr+1)
+        logger.debug("Generating dataset ...")
+        train_path, valid_path = generate_dataset(cfg, dataset_dict, itr+1)
+        logger.debug("Train dataset path: %s", train_path)
+        logger.debug("Valid dataset path: %s", valid_path)
+
+        logger.debug("Start training ...")
+        pose_lifter = train(cfg, run, pose_lifter, train_path, valid_path, itr+1)
+        logger.debug("Training finished.")
+
+        logger.debug("Building new data ...")
+        dataset_dict, eval_dict = get_data_dict(
+            cfg,
+            pose_lifter,
+            get_data2d(cfg, detector, pose_estimator)
+        )
+        logger.debug("Finished.")
+        with open(cfg.WORKSPACE + f'/evaluation/iter{itr+1}.pkl', 'wb') as f:
+            pickle.dump(eval_dict, f)
+
+        logger.debug("Iteration {} Evaluation".format(itr+1))
+        eval_calib(gt_dict, eval_dict)
+        eval_mono(gt_dict, eval_dict)
+        logger.debug("Iteration %s finished.", itr+1)
+
+    if run is not None:
+        run.stop()
+
+
+if __name__ == "__main__":
+    main()
