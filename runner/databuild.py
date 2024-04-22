@@ -6,7 +6,7 @@ import numpy as np
 from natsort import natsorted
 from pycalib.calib import rebase_all
 
-import _init_paths
+from . import _init_paths
 from common.calibration import calibrate
 from common.utils import invRT_batch, normalize_kpts
 from .inference import estimate2d, estimate3d

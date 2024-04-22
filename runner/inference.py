@@ -12,7 +12,7 @@ from mmpose.evaluation.functional import nms
 from mmpose.structures import merge_data_samples, split_instances
 from natsort import natsorted
 
-import _init_paths
+from . import _init_paths
 from common.utils import turn_into_clips
 
 handler = StreamHandler()

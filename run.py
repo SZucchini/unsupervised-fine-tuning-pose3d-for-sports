@@ -161,7 +161,7 @@ def main():
     parser.add_argument("--config", type=str, default="./config/MotionAGFormer.yaml")
     parser.add_argument("--workspace", type=str, default="./workspace/default")
     parser.add_argument("--neptune", action="store_true")
-    parser.add_argument("--neptune_project", type=int, default="username/project")
+    parser.add_argument("--neptune_project", type=str, default="username/project")
     parser.add_argument("--neptune_token", type=str, default="./token/neptune.txt")
     args = parser.parse_args()
 
