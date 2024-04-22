@@ -1,0 +1,12 @@
+DEVICE: "cuda"
+FRAMES: 27
+MOTIONAGF_CKPT: './common/MotionAGFormer/checkpoint/motionagformer-xs-h36m.pth.tr'
+SEED: 42
+
+CALIB:
+  BA: False
+  RANSAC: False
+
+TUNING:
+  EPOCHS: 100
+  ITERATIONS: 5

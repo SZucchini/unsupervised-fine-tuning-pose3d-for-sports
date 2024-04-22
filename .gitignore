@@ -1,7 +1,12 @@
 .DS_Store
+.neptune/
 @eaDir/
 data/
 common/MotionAGFormer/checkpoint/
+run/
+token/
+workspace/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

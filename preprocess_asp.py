@@ -8,7 +8,8 @@ import c3d
 import numpy as np
 from natsort import natsorted
 
-from asp.utils import Camera, get_kpts3d_pixel, normalize_kpts, split_data
+from asp.utils import Camera, get_kpts3d_pixel, split_data
+from common.utils import normalize_kpts
 
 
 def make_dir(path):

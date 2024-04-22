@@ -223,23 +223,3 @@ def split_data(input_2d, label_3d, scale_list, frames, stride):
     labels = label_3d[split_idx]
     scales = scale_list[split_idx]
     return inputs, labels, scales
-
-
-def normalize_kpts(kpts, w=3840, h=2160):
-    """Normalize keypoints to the range [-1, 1].
-
-    Args:
-        kpts (ndarray): Keypoints.
-        w (int): Image width.
-        h (int): Image height.
-
-    Returns:
-        kpts_norm (ndarray): Normalized keypoints.
-    """
-    if kpts.shape[-1] == 2:
-        kpts_norm = kpts / w * 2 - [1, h / w]
-    elif kpts.shape[-1] == 3:
-        kpts_norm = np.zeros_like(kpts)
-        kpts_norm[:, :, :2] = kpts[:, :, :2] / w * 2 - [1, h / w]
-        kpts_norm[:, :, 2] = kpts[:, :, 2] / w * 2
-    return kpts_norm
