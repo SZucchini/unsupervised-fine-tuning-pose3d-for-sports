@@ -4,6 +4,7 @@ data/
 common/MotionAGFormer/checkpoint/
 run/
 token/
+workspace/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
