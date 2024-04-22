@@ -14,10 +14,9 @@ from mmpose.utils import adapt_mmdet_pipeline
 
 from config.runner.defaults import get_cfg_defaults
 from common.MotionAGFormer.model import MotionAGFormer
-# from libs.databuilder import generate_dataset, get_data2d, get_data_dict, get_gt_dict
-# from libs.eval.evaluation import eval_calib, eval_mono
-# from libs.pose.MotionAGFormer.model import MotionAGFormer
-# from libs.tuning.training import train
+from runner.databuild import generate_dataset, get_data2d, get_data_dict, get_gt_dict
+from runner.evaluation import eval_calib, eval_mono
+from runner.training import train
 
 handler = StreamHandler()
 handler.setLevel(DEBUG)
