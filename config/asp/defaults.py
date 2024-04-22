@@ -3,7 +3,7 @@ from yacs.config import CfgNode as CN
 _C = CN()
 _C.DEVICE = 'cuda'
 _C.FRAMES = 27
-_C.PRETRAINED_CKPT = './libs/MotionAGFormer/checkpoint/best_epoch.pth.tr'
+_C.PRETRAINED_CKPT = './common/MotionAGFormer/checkpoint/best_epoch.pth.tr'
 _C.SEED = 42
 _C.WORKSPACE = './workspace/default'
 
