@@ -2,6 +2,9 @@
 @eaDir/
 data/
 common/MotionAGFormer/checkpoint/
+run/
+token/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
