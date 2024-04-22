@@ -90,7 +90,7 @@ def generate_plabel_dataset(cfg, model, itr):
         inputs_list, labels_list = [], []
         pred_kpts3d_cameras = to_pixel_coordinate(tri_kpts3d, pred_R, pred_t, K)
         for i in range(len(pred_kpts3d_cameras)):
-            inputs, labels = split_data(input_2d[i], pred_kpts3d_cameras[i], 27, 27 // 3)
+            inputs, labels = split_data(input_2d[i], pred_kpts3d_cameras[i], None, 27, 27 // 3)
             inputs_list.append(inputs)
             labels_list.append(labels)
 

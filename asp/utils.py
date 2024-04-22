@@ -221,5 +221,8 @@ def split_data(input_2d, label_3d, scale_list, frames, stride):
     split_idx = split_clips(input_2d.shape[0], frames, data_stride=stride)
     inputs = input_2d[split_idx]
     labels = label_3d[split_idx]
-    scales = scale_list[split_idx]
-    return inputs, labels, scales
+    if scale_list is not None:
+        scales = scale_list[split_idx]
+        return inputs, labels, scales
+    else:
+        return inputs, labels
