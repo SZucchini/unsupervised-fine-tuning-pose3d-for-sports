@@ -146,3 +146,31 @@ def triangulate_with_conf(p2d, s2d, K, R_w2c, t_w2c, mask):
     X = np.array(X)
     X = X.reshape(Nf, Nj, 3)
     return X
+
+
+def resample(len_frames, n_frames=243):
+    even = np.linspace(0, len_frames, num=n_frames, endpoint=False)
+    result = np.floor(even)
+    result = np.clip(result, a_min=0, a_max=len_frames - 1).astype(np.uint32)
+    return result
+
+
+def turn_into_clips(keypoints, n_frames=243):
+    clips = []
+    len_frames = keypoints.shape[1]
+    downsample = np.arange(n_frames)
+    if len_frames <= n_frames:
+        new_indices = resample(len_frames, n_frames)
+        clips.append(keypoints[:, new_indices, ...])
+        downsample = np.unique(new_indices, return_index=True)[1]
+    else:
+        for start_idx in range(0, len_frames, n_frames):
+            keypoints_clip = keypoints[:, start_idx:start_idx+n_frames, ...]
+            clip_length = keypoints_clip.shape[1]
+            if clip_length != n_frames:
+                new_indices = resample(clip_length, n_frames)
+                clips.append(keypoints_clip[:, new_indices, ...])
+                downsample = np.unique(new_indices, return_index=True)[1]
+            else:
+                clips.append(keypoints_clip)
+    return clips, downsample
