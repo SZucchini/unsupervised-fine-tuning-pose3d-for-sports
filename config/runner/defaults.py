@@ -16,6 +16,9 @@ _C.CALIB.RANSAC = False
 _C.CALIB.RANSAC_ITER = 100
 _C.CALIB.TH_2D = 555.0
 _C.CALIB.TH_3D = 1.0
+_C.CALIB.INTRINSIC_C1 = './data/Runner/intrinsic/iphone13.npz'
+_C.CALIB.INTRINSIC_C2 = './data/Runner/intrinsic/iphone11pro.npz'
+_C.CALIB.INTRINSIC_C3 = './data/Runner/intrinsic/iphone13.npz'
 
 _C.MMPOSE = CN()
 _C.MMPOSE.DET_CONFIG = './common/mmpose/mmdet_cfg/rtmdet_m_640-8xb32_coco-person.py'

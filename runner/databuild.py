@@ -67,6 +67,10 @@ def get_data2d(cfg, detector, pose_estimator):
 def get_data_dict(cfg, pose_lifter, data2d):
     data3d = {}
     dataset_dict, eval_dict = {}, {}
+    param_c1 = np.load(cfg.CALIB.INTRINSIC_C1)
+    param_c2 = np.load(cfg.CALIB.INTRINSIC_C2)
+    param_c3 = np.load(cfg.CALIB.INTRINSIC_C3)
+    K = np.array([param_c1["mtx"], param_c2["mtx"], param_c3["mtx"]])
 
     for data_name in data2d.keys():
         data3d[data_name] = {}
@@ -106,7 +110,9 @@ def get_data_dict(cfg, pose_lifter, data2d):
         score3d = data3d[data_name]['score']
 
         for k2d, s2d, k3d, s3d in zip(kpts2d, score2d, kpts3d, score3d):
-            R_est, t_est, k3d_est, k3d_tri = calibrate(k2d, s2d, k3d, s3d)
+            R_est, t_est, k3d_tri = calibrate(
+                cfg, k2d, s2d, k3d, s3d, K
+            )
 
             if data_name in cfg.TUNING.TRAIN_DATA:
                 dataset_dict[data_name]['3d_kpts_triangulated'].append(k3d_tri)
