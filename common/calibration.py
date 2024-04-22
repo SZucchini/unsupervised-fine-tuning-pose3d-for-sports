@@ -211,12 +211,20 @@ def calib_linear_ransac(v_CxNx3, n_CxMx3, K, n_iter, th_2d, th_3d, seed):
 
 
 def calibrate(cfg, kpts2d, score2d, kpts3d, score3d, K):
-    """
-    kpts2d  : np.ndarray, (C, N, 17, 2), H36M format
-    score2d : np.ndarray, (C, N, 17)
-    kpts3d  : np.ndarray, (C, N, 17, 3), H36M format
-    score3d : np.ndarray, (C, N, 17)
-    K       : np.ndarray, (C, 3, 3)
+    """Calibrate extrinsic camera parameters from 2D and 3D keypoints.
+
+    Args:
+        cfg (CfgNode): Configuration.
+        kpts2d (np.ndarray): 2D keypoints.
+        score2d (np.ndarray): 2D keypoints score.
+        kpts3d (np.ndarray): 3D keypoints.
+        score3d (np.ndarray): 3D keypoints score.
+        K (np.ndarray): Intrinsic camera parameters.
+
+    Returns:
+        R_est (np.ndarray): Estimated rotation matrix.
+        t_est (np.ndarray): Estimated translation vector.
+        tri_kpts3d (np.ndarray): Triangulated 3D keypoints.
     """
     mask_CxNxJ = (score2d > 0) * (score3d == 1)
     mask_vis_NxJ = visible_from_all_cam(mask_CxNxJ)
