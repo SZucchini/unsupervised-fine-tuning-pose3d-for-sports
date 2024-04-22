@@ -8,6 +8,15 @@ _C.MOTIONAGF_CKPT = './libs/pose/MotionAGFormer/checkpoint/motionagformer-b-h36m
 _C.SEED = 42
 _C.WORKSPACE = './workspace/default'
 
+_C.CALIB = CN()
+_C.CALIB.BA = False
+_C.CALIB.BA_LAMBDA1 = 1.0
+_C.CALIB.BA_LAMBDA2 = 10.0
+_C.CALIB.RANSAC = False
+_C.CALIB.RANSAC_ITER = 100
+_C.CALIB.TH_2D = 555.0
+_C.CALIB.TH_3D = 1.0
+
 _C.MMPOSE = CN()
 _C.MMPOSE.DET_CONFIG = './libs/pose/mmpose/mmdet_cfg/rtmdet_m_640-8xb32_coco-person.py'
 _C.MMPOSE.DET_CKPT = 'https://download.openmmlab.com/mmpose/v1/projects/rtmpose/rtmdet_m_8xb32-100e_coco-obj365-person-235e8209.pth'
