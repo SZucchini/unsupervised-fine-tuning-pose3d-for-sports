@@ -17,7 +17,7 @@ def get_gt_dict(cfg):
     gt_dict = {}
     for data_name in cfg.TUNING.EVAL_DATA:
         gt_dict[data_name] = []
-        gt_path = f"./data/{data_name}/gt_kpts"
+        gt_path = f"./data/Runner/{data_name}/gt_kpts"
         gt_files = natsorted(glob.glob(gt_path + '/*.npy'))
 
         for gt_file in gt_files:
