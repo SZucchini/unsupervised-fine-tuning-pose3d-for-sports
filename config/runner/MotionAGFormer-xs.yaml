@@ -1,6 +1,6 @@
 DEVICE: "cuda"
 FRAMES: 27
-MOTIONAGF_CKPT: './libs/pose/MotionAGFormer/checkpoint/motionagformer-xs-h36m.pth.tr'
+MOTIONAGF_CKPT: './common/MotionAGFormer/checkpoint/motionagformer-xs-h36m.pth.tr'
 SEED: 42
 
 CALIB:

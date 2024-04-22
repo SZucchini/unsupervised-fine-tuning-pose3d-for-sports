@@ -18,9 +18,9 @@ _C.CALIB.TH_2D = 555.0
 _C.CALIB.TH_3D = 1.0
 
 _C.MMPOSE = CN()
-_C.MMPOSE.DET_CONFIG = './libs/pose/mmpose/mmdet_cfg/rtmdet_m_640-8xb32_coco-person.py'
+_C.MMPOSE.DET_CONFIG = './common/mmpose/mmdet_cfg/rtmdet_m_640-8xb32_coco-person.py'
 _C.MMPOSE.DET_CKPT = 'https://download.openmmlab.com/mmpose/v1/projects/rtmpose/rtmdet_m_8xb32-100e_coco-obj365-person-235e8209.pth'
-_C.MMPOSE.VITPOSE_CONFIG = './libs/pose/mmpose/mmpose_cfg/td-hm_ViTPose-huge_8xb64-210e_coco-256x192.py'
+_C.MMPOSE.VITPOSE_CONFIG = './common/mmpose/mmpose_cfg/td-hm_ViTPose-huge_8xb64-210e_coco-256x192.py'
 _C.MMPOSE.VITPOSE_CKPT = 'https://download.openmmlab.com/mmpose/v1/body_2d_keypoint/topdown_heatmap/coco/td-hm_ViTPose-huge_8xb64-210e_coco-256x192-e32adcd4_20230314.pth'
 
 _C.MMPOSE.DET_ID = 0
@@ -32,7 +32,7 @@ _C.MMPOSE.NORM_POSE2D = True
 
 _C.NEPTUNE = CN()
 _C.NEPTUNE.PROJECT = 'username/project'
-_C.NEPTUNE.TOKEN = './token/neptune.txt'
+_C.NEPTUNE.TOKEN_PATH = './token/neptune.txt'
 
 _C.TUNING = CN()
 _C.TUNING.DATA_DIRS = [
