@@ -145,7 +145,7 @@ def generate_labelset(k2d, s2d, k3d, size, R, t):
 
 
 def generate_dataset(cfg, dataset_dict, itr):
-    dataset_path = cfg.TUNING.WORKSPACE + f'/dataset/iter{itr}'
+    dataset_path = cfg.WORKSPACE + f'/dataset/iter{itr}'
     train_path = os.path.join(dataset_path, 'train')
     valid_path = os.path.join(dataset_path, 'valid')
 

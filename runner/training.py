@@ -70,7 +70,7 @@ def valid_one_epoch(model, test_loader, device):
 
 
 def train(cfg, run, model, train_path, valid_path, itr):
-    workspace = cfg.TUNING.WORKSPACE
+    workspace = cfg.WORKSPACE
     best_path = f"{workspace}/checkpoint/iter{itr}_best.pth.tr"
     last_path = f"{workspace}/checkpoint/iter{itr}_last.pth.tr"
 
