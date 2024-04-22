@@ -137,8 +137,8 @@ def train(cfg, run, model, train_path, itr=0):
     train_path = train_path
     test_path = cfg.DATA.TEST_PATH
 
-    train_dataset = MotionDataset3D(cfg, train_path)
-    test_dataset = MotionDataset3D(cfg, test_path, test=True)
+    train_dataset = MotionDataset3D(train_path)
+    test_dataset = MotionDataset3D(test_path, test=True)
     logger.debug(f"Train dataset size: {len(train_dataset)}")
     logger.debug(f"Test dataset size: {len(test_dataset)}")
 
