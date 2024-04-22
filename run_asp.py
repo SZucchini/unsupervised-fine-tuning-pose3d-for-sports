@@ -26,6 +26,11 @@ logger.addHandler(handler)
 
 
 def set_seed(seed):
+    """Set seed for reproducibility.
+
+    Args:
+        seed (int): Seed value.
+    """
     random.seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
     np.random.seed(seed)
@@ -35,18 +40,16 @@ def set_seed(seed):
     torch.backends.cudnn.deterministic = True
 
 
-def init_neptune(cfg, token_path):
-    with open(token_path, "r") as f:
-        api_token = f.readline().rstrip("\n")
-    run = neptune.init_run(
-        name=cfg.RUN_NAME,
-        project="NUSBG/ftpose3d",
-        api_token=api_token,
-    )
-    return run
-
-
 def get_cfg(config, opts):
+    """Get configuration.
+
+    Args:
+        config (str): Configuration file.
+        opts (list): List of options.
+
+    Returns:
+        cfg (CfgNode): Configuration.
+    """
     cfg = get_cfg_defaults()
     cfg.merge_from_file(config)
     cfg.merge_from_list(opts)
@@ -54,17 +57,46 @@ def get_cfg(config, opts):
     return cfg
 
 
+def init_neptune(cfg):
+    """Initialize Neptune.
+
+    Args:
+        cfg (CfgNode): Configuration.
+
+    Returns:
+        run (neptune.run.Run): Neptune run.
+    """
+    with open(cfg.NEPTUNE.TOKEN_PATH, "r") as f:
+        api_token = f.readline().rstrip("\n")
+    run = neptune.init_run(
+        project=cfg.NEPTUNE.PROJECT,
+        api_token=api_token,
+    )
+    return run
+
+
 def upload_cfg(cfg, run):
+    """Upload configuration to Neptune.
+
+    Args:
+        cfg (CfgNode): Configuration.
+        run (neptune.run.Run): Neptune run.
+    """
     cfg_path = cfg.WORKSPACE + '/config.yaml'
     with open(cfg_path, 'w') as f:
         f.write(cfg.dump())
-    run["config"].upload(cfg_path)
+    if run is not None:
+        run["config"].upload(cfg_path)
 
 
 def create_workspace(cfg):
+    """Create workspace directories.
+
+    Args:
+        cfg (CfgNode): Configuration.
+    """
     if not os.path.exists(cfg.WORKSPACE):
         os.makedirs(cfg.WORKSPACE)
-
     work_dirs = ["/checkpoint", "/dataset"]
     for work_dir in work_dirs:
         path = cfg.WORKSPACE + work_dir
@@ -73,6 +105,14 @@ def create_workspace(cfg):
 
 
 def load_model(cfg):
+    """Load model.
+
+    Args:
+        cfg (CfgNode): Configuration.
+
+    Returns:
+        model (nn.Module): Model.
+    """
     model_path = cfg.PRETRAINED_CKPT
     model = MotionAGFormer(n_layers=12, dim_in=3, dim_feat=64,
                            num_heads=8, neighbour_num=2, n_frames=27)
@@ -84,23 +124,40 @@ def load_model(cfg):
 
 
 def main():
+    """Main function.
+
+    Args:
+        config (str): Configuration file path.
+        workspace (str): Workspace directory.
+        neptune (bool): Neptune flag.
+        neptune_project (str): Neptune project.
+        neptune_token (str): Neptune token path.
+    """
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", type=str, required=True)
-    parser.add_argument("--run_name", type=str, required=True)
-    parser.add_argument("--work_dir", type=str, required=True)
+    parser.add_argument("--config", type=str, default="./config/MotionAGFormer.yaml")
+    parser.add_argument("--workspace", type=str, default="./workspace/default")
+    parser.add_argument("--neptune", action="store_true")
+    parser.add_argument("--neptune_project", type=str, default="username/project")
+    parser.add_argument("--neptune_token", type=str, default="./token/neptune.txt")
     args = parser.parse_args()
 
-    opts = ["WORKSPACE", args.work_dir, "RUN_NAME", args.run_name]
+    opts = [
+        "WORKSPACE", args.workspace,
+        "NEPTUNE.PROJECT", args.neptune_project,
+        "NEPTUNE.TOKEN_PATH", args.neptune_token
+    ]
     cfg = get_cfg(args.config, opts)
     logger.debug("Config data\n{}\n".format(cfg))
 
-    run = init_neptune(cfg, "./token/neptune.txt")
+    if args.neptune:
+        run = init_neptune(cfg)
+    else:
+        run = None
     upload_cfg(cfg, run)
-
     set_seed(cfg.SEED)
     create_workspace(cfg)
 
-    logger.debug("Loading models ...")
+    logger.debug("Loading model ...")
     model = load_model(cfg)
 
     iterations = cfg.TUNING.ITERATIONS

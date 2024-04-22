@@ -44,10 +44,11 @@ def train_one_epoch(cfg, run, model, train_loader, optimizer, itr=0):
         loss_total.backward()
         optimizer.step()
 
-        run[f"train/{itr}/batch/loss_3d_pos"].log(loss_3d_pos.item())
-        run[f"train/{itr}/batch/loss_3d_scale"].log(loss_3d_scale.item())
-        run[f"train/{itr}/batch/loss_3d_velocity"].log(loss_3d_velocity.item())
-        run[f"train/{itr}/batch/loss_total"].log(loss_total.item())
+        if run is not None:
+            run[f"train/{itr}/batch/loss_3d_pos"].log(loss_3d_pos.item())
+            run[f"train/{itr}/batch/loss_3d_scale"].log(loss_3d_scale.item())
+            run[f"train/{itr}/batch/loss_3d_velocity"].log(loss_3d_velocity.item())
+            run[f"train/{itr}/batch/loss_total"].log(loss_total.item())
 
         loss_epoch += loss_total.item()
 
@@ -162,9 +163,10 @@ def train(cfg, run, model, train_path, itr=0):
         train_epoch_loss = train_one_epoch(cfg, run, model, train_loader, optimizer, itr=itr)
         test_epoch_mpjpe, test_epoch_pa_mpjpe = test_one_epoch(cfg, model, test_loader)
 
-        run[f"train/{itr}/epoch/loss"].log(train_epoch_loss)
-        run[f"test/{itr}/epoch/mpjpe"].log(test_epoch_mpjpe)
-        run[f"test/{itr}/epoch/pa_mpjpe"].log(test_epoch_pa_mpjpe)
+        if run is not None:
+            run[f"train/{itr}/epoch/loss"].log(train_epoch_loss)
+            run[f"test/{itr}/epoch/mpjpe"].log(test_epoch_mpjpe)
+            run[f"test/{itr}/epoch/pa_mpjpe"].log(test_epoch_pa_mpjpe)
         logger.debug(f"Epoch {epoch}")
         logger.debug(f"Test MPJPE: {test_epoch_mpjpe} [mm]")
         logger.debug(f"Test PA-MPJPE: {test_epoch_pa_mpjpe} [mm]")
@@ -181,8 +183,9 @@ def train(cfg, run, model, train_path, itr=0):
             test_mpjpe, test_pa_mpjpe = test_one_epoch(cfg, model, test_loader)
             test_mpjpe_best, test_pa_mpjpe_best = test_one_epoch(cfg, best_model, test_loader)
 
-            run["test/best_model/mpjpe"].log(test_mpjpe_best)
-            run["test/best_model/pa_mpjpe"].log(test_pa_mpjpe_best)
+            if run is not None:
+                run["test/best_model/mpjpe"].log(test_mpjpe_best)
+                run["test/best_model/pa_mpjpe"].log(test_pa_mpjpe_best)
             logger.debug(f"Test MPJPE Best model: {test_mpjpe_best} [mm]")
             logger.debug(f"Test PA-MPJPE Best model: {test_pa_mpjpe_best} [mm]")
 
