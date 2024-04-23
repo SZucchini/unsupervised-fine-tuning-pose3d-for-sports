@@ -1,6 +1,5 @@
 from yacs.config import CfgNode as CN
 
-
 _C = CN()
 _C.DEVICE = 'cuda'
 _C.FRAMES = 27

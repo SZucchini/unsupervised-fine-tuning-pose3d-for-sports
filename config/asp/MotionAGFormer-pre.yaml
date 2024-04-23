@@ -1,0 +1,13 @@
+PRETRAINED_CKPT: './common/MotionAGFormer/checkpoint/best_epoch.pth.tr'
+
+CALIB:
+  BA: False
+  RANSAC: False
+
+DATA:
+  PSEUDO_PATH: './data/ASP-27/calib_valid'
+  TEST_PATH: './data/ASP-27/valid'
+  TRAIN_PATH: './data/ASP-27/valid'
+
+TUNING:
+  ITERATIONS: 5
