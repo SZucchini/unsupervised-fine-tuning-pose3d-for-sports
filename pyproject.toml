@@ -5,7 +5,8 @@ description = ""
 authors = ["SZucchini <suzuki.tomohiro@g.sp.m.is.nagoya-u.ac.jp>"]
 readme = "README.md"
 packages = [
-    {include = "common"}
+    {include = "common"},
+    {include = "runner"},
 ]
 
 [tool.poetry.dependencies]
