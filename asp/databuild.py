@@ -5,7 +5,6 @@ from logging import getLogger, StreamHandler, DEBUG, Formatter
 
 import numpy as np
 
-from . import _init_paths
 from common.calibration import calibrate
 from .evaluation import evaluate_extrinsic, evaluate_plabels
 from .infernece import estimate3d
