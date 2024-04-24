@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "unsupervised-fine-tuning-pose3d-for-sports"
+version = "0.1.0"
+description = ""
+authors = ["SZucchini <suzuki.tomohiro@g.sp.m.is.nagoya-u.ac.jp>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+torch = {version = "1.11.0+cu113", source = "torch_1.11_cu113"}
+torchvision = {version = "0.12.0+cu113", source = "torch_1.11_cu113"}
+yacs = "^0.1.8"
+numpy = "1.24.3"
+scipy = "1.10.1"
+mmengine = "0.10.1"
+mmcv = {url = "https://download.openmmlab.com/mmcv/dist/cu113/torch1.11.0/mmcv-2.1.0-cp38-cp38-manylinux1_x86_64.whl"}
+opencv-python = "^4.9.0.80"
+mmdet = "^3.3.0"
+chumpy = "0.66"
+mmpose = "1.2.0"
+timm = "0.9.12"
+mmpretrain = "1.1.1"
+pycalib-simple = "^2023.12.21.1"
+urllib3 = "<2"
+neptune = "1.8.6"
+natsort = "^8.4.0"
+
+
+[[tool.poetry.source]]
+name = "torch_1.11_cu113"
+url = "https://download.pytorch.org/whl/cu113"
+priority = "explicit"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
