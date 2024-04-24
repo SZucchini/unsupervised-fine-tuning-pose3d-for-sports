@@ -1,4 +1,4 @@
-# unsupervised-fine-tuning-pose3d-for-sports
+# Pseudo-label based unsupervised fine-tuning of a monocular 3D pose estimation model for sports motions
 This is an official implementation of "Pseudo-label based unsupervised fine-tuning of a monocular 3D pose estimation model for sports motions" at CVsports 2024.
 
 <p align="center"><img src="fig/demo.gif" width="55%" alt="" /></p>
