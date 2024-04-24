@@ -1,5 +1,6 @@
 .DS_Store
 .neptune/
+.vscode/
 @eaDir/
 data/
 common/MotionAGFormer/checkpoint/
