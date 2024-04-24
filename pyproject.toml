@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["SZucchini <suzuki.tomohiro@g.sp.m.is.nagoya-u.ac.jp>"]
 readme = "README.md"
+packages = [
+    {include = "common"}
+]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.12"

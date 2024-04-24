@@ -1,7 +1,6 @@
 import numpy as np
 import torch
 
-from . import _init_paths
 from common.utils import turn_into_clips
 from .dataset import flip_data
 

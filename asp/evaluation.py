@@ -1,7 +1,6 @@
 import numpy as np
 from pycalib.calib import absolute_orientation
 
-from . import _init_paths
 from common.utils import invRT_batch
 from .loss import calc_mpjpe, p_mpjpe, spa_mpjpe
 from .utils import Camera, get_kpts3d_pixel
