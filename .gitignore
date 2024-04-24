@@ -3,6 +3,7 @@
 @eaDir/
 data/
 common/MotionAGFormer/checkpoint/
+notebook/
 run/
 token/
 workspace/
