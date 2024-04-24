@@ -43,6 +43,44 @@ H36M_BONE = np.array(
     dtype=np.int64,
 )
 
+H36M_ALIGNED_KEY = {
+    "MidHip": 0,
+    "RHip": 1,
+    "RKnee": 2,
+    "RAnkle": 3,
+    "LHip": 4,
+    "LKnee": 5,
+    "LAnkle": 6,
+    "Thorax": 7,
+    "Nose": 8,
+    "LShoulder": 9,
+    "LElbow": 10,
+    "LWrist": 11,
+    "RShoulder": 12,
+    "RElbow": 13,
+    "RWrist": 14,
+}
+
+H36M_ALIGNED_BONE = np.array(
+    [
+        [H36M_ALIGNED_KEY["Nose"], H36M_ALIGNED_KEY["Thorax"]],
+        [H36M_ALIGNED_KEY["Thorax"], H36M_ALIGNED_KEY["RShoulder"]],
+        [H36M_ALIGNED_KEY["Thorax"], H36M_ALIGNED_KEY["LShoulder"]],
+        [H36M_ALIGNED_KEY["RShoulder"], H36M_ALIGNED_KEY["RElbow"]],
+        [H36M_ALIGNED_KEY["LShoulder"], H36M_ALIGNED_KEY["LElbow"]],
+        [H36M_ALIGNED_KEY["RWrist"], H36M_ALIGNED_KEY["RElbow"]],
+        [H36M_ALIGNED_KEY["LWrist"], H36M_ALIGNED_KEY["LElbow"]],
+        [H36M_ALIGNED_KEY["Thorax"], H36M_ALIGNED_KEY["MidHip"]],
+        [H36M_ALIGNED_KEY["RHip"], H36M_ALIGNED_KEY["MidHip"]],
+        [H36M_ALIGNED_KEY["LHip"], H36M_ALIGNED_KEY["MidHip"]],
+        [H36M_ALIGNED_KEY["RHip"], H36M_ALIGNED_KEY["RKnee"]],
+        [H36M_ALIGNED_KEY["RKnee"], H36M_ALIGNED_KEY["RAnkle"]],
+        [H36M_ALIGNED_KEY["LHip"], H36M_ALIGNED_KEY["LKnee"]],
+        [H36M_ALIGNED_KEY["LKnee"], H36M_ALIGNED_KEY["LAnkle"]],
+    ],
+    dtype=np.int64,
+)
+
 
 def normalize_kpts(kpts, w=3840, h=2160):
     """Normalize keypoints to the range [-1, 1].
