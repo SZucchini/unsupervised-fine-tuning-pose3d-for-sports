@@ -1,3 +1,7 @@
+"""
+mmpose config are copied from mmmpose project:
+https://github.com/open-mmlab/mmpose
+"""
 _base_ = ['./base.py']
 
 # runtime
