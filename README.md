@@ -12,7 +12,7 @@ This repository contains:
 
 ## Getting Started
 > [!NOTE]
-> Note that for the ASPset-510, due to the type and number of GPUs and random numbers, it is difficult to perfectly reproduce the results in the paper, but we have already confirmed that the results show the same trend as in the paper after multiple training runs.
+> For the ASPset-510, due to the type and number of GPUs and random numbers, it is difficult to perfectly reproduce the results in the paper, but we have already confirmed that the results show the same trend as in the paper after multiple training runs.
 
 ### Installation
 0. Prerequisites
