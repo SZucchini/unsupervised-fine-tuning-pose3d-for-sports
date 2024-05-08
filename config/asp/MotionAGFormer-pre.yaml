@@ -1,4 +1,4 @@
-PRETRAINED_CKPT: './common/MotionAGFormer/checkpoint/best_epoch.pth.tr'
+PRETRAINED_CKPT: './common/MotionAGFormer/checkpoint/scale_augment_best.pth.tr'
 
 CALIB:
   BA: False
