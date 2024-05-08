@@ -75,6 +75,14 @@ You can download the fine-tuned model weights with each dataset from the link.
 ## Citation
 Coming soon...
 
+
+## Acknowledgements
+We appreciate the following repositories:
+- [kyotovision-public/extrinsic-camera-calibration-from-a-moving-person](https://github.com/kyotovision-public/extrinsic-camera-calibration-from-a-moving-person)
+- [TaatiTeam/MotionAGFormer](https://github.com/TaatiTeam/MotionAGFormer)
+- [anibali/aspset-510](https://github.com/anibali/aspset-510)
+
+
 ## Contact
 If you have any questions, please contact author:
 - Tomohiro Suzuki (suzuki.tomohiro[at]g.sp.m.is.nagoya-u.ac.jp)
