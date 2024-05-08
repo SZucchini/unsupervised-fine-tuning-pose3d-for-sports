@@ -79,7 +79,9 @@ Coming soon...
 ## Acknowledgements
 We appreciate the following repositories:
 - [kyotovision-public/extrinsic-camera-calibration-from-a-moving-person](https://github.com/kyotovision-public/extrinsic-camera-calibration-from-a-moving-person)
+- [open-mmlab/mmpose](https://github.com/open-mmlab/mmpose)
 - [TaatiTeam/MotionAGFormer](https://github.com/TaatiTeam/MotionAGFormer)
+- [ViTAE-Transformer/ViTPose](ViTAE-Transformer/ViTPose)
 - [anibali/aspset-510](https://github.com/anibali/aspset-510)
 
 
