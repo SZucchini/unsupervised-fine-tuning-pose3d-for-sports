@@ -1,6 +1,4 @@
 """
-Copyright 2024 SZucchini
-
 This file includes functions developed at multiple sources under multiple licenses:
 See the respective Licenses for the specific language governing permissions and limitations under those Licenses.
 

@@ -1,3 +1,11 @@
+"""
+This file includes functions developed at multiple sources under multiple licenses:
+See the respective Licenses for the specific language governing permissions and limitations under those Licenses.
+
+Original and modified code from:
+- TaatiTeam/MotionAGFormer (resample, turn_into_clips, normalize_kpts) under Apache-2.0 License: https://github.com/TaatiTeam/MotionAGFormer
+- kyotovision-public/extrinsic-camera-calibration-from-a-moving-person (other functions) under MIT License: https://github.com/kyotovision-public/extrinsic-camera-calibration-from-a-moving-person
+"""
 import numpy as np
 from pycalib.calib import rebase_all
 

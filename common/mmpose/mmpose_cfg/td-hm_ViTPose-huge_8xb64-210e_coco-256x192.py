@@ -1,6 +1,7 @@
 """
-mmpose config are copied from mmmpose project:
-https://github.com/open-mmlab/mmpose
+This file is a copy of repository originally released under the Apache-2.0 License.
+Details of the original repository is as follows:
+- Original repository: https://github.com/open-mmlab/mmpose
 """
 _base_ = ['./base.py']
 
