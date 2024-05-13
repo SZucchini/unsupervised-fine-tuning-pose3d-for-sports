@@ -28,6 +28,7 @@ pycalib-simple = "^2023.12.21.1"
 urllib3 = "<2"
 neptune = "1.8.6"
 natsort = "^8.4.0"
+c3d = "^0.5.2"
 
 
 [[tool.poetry.source]]

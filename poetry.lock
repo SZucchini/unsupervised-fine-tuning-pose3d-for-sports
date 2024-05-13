@@ -139,6 +139,23 @@ six = "*"
 swagger-spec-validator = ">=2.0.1"
 
 [[package]]
+name = "c3d"
+version = "0.5.2"
+description = "A library for manipulating C3D binary files"
+optional = false
+python-versions = ">=3.7,<4.0"
+files = [
+    {file = "c3d-0.5.2-py3-none-any.whl", hash = "sha256:16f8edf55c04d2fdd46f59a709253affd8f1d7e0a62995437091d74440d8f278"},
+    {file = "c3d-0.5.2.tar.gz", hash = "sha256:b49801237be3b3cede1731a5058f48a96c0bd02339ef25e4e384a4648e23e580"},
+]
+
+[package.dependencies]
+numpy = ">=1,<2"
+
+[package.extras]
+gui = ["pyglet (>=1.5.21,<2.0.0)"]
+
+[[package]]
 name = "certifi"
 version = "2024.2.2"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -3081,4 +3098,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.12"
-content-hash = "c571ac3c70c90acd5d1c6b2d8236b893c3c4e3b6bbcaff43213b4400aa409629"
+content-hash = "a5d3c2984f2dcad1b3b144f87e1f43c3e5e226b9af87e800a9a038c2d2fe0ecb"
