@@ -84,6 +84,10 @@ We appreciate the following repositories:
 - [ViTAE-Transformer/ViTPose](ViTAE-Transformer/ViTPose)
 - [anibali/aspset-510](https://github.com/anibali/aspset-510)
 
+## License
+- This software is created under multiple licenses.
+- We write the license of each script in the header of the script.
+- Please refer to the each script for the details.
 
 ## Contact
 If you have any questions, please contact author:
