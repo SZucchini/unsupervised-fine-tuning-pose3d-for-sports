@@ -1,3 +1,12 @@
+"""
+This file includes functions developed at multiple sources under multiple licenses:
+See the respective Licenses for the specific language governing permissions and limitations under those Licenses.
+
+Original and modified code from:
+- TaatiTeam/MotionAGFormer (normalize_screen_coordinates) under Apache-2.0 License: https://github.com/TaatiTeam/MotionAGFormer
+- open-mmlab/mmpose (process_one_image) under Apache-2.0 License: https://github.com/open-mmlab/mmpose
+- kyotovision-public/extrinsic-camera-calibration-from-a-moving-person (coco_h36m and h36m_coco_format) under MIT License: https://github.com/kyotovision-public/extrinsic-camera-calibration-from-a-moving-person
+"""
 import glob
 import os
 from logging import getLogger, StreamHandler, DEBUG, Formatter

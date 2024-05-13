@@ -1,6 +1,10 @@
 """
-Camera class is edited from the original code in the following link:
-https://github.com/anibali/aspset-510/blob/master/src/aspset510/camera.py
+This file includes functions developed at multiple sources under multiple licenses:
+See the respective Licenses for the specific language governing permissions and limitations under those Licenses.
+
+Original and modified code from:
+- TaatiTeam/MotionAGFormer (resample, split_clips, and split_data) under Apache-2.0 License: https://github.com/TaatiTeam/MotionAGFormer
+- anibali/aspset-510 (other functions) under CC0 License: https://github.com/anibali/aspset-510
 """
 import numpy as np
 

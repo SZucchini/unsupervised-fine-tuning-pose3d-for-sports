@@ -1,8 +1,8 @@
 """
-MotionAGFormer model implementation is copied from the following repository:
-https://github.com/TaatiTeam/MotionAGFormer
+MotionAGFormer model scripts are copy of repository originally released under the Apache-2.0 License.
+Details of the original repository is as follows:
+- Original repository: https://github.com/TaatiTeam/MotionAGFormer
 """
-
 from collections import OrderedDict
 
 import torch

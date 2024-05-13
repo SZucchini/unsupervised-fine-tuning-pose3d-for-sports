@@ -1,3 +1,9 @@
+"""
+See the License for the specific language governing permissions and limitations under those Licenses.
+
+Original and modified code from:
+- kyotovision-public/extrinsic-camera-calibration-from-a-moving-person (evaluate_extrinsic, eval_R, eval_t, and align) under MIT License: https://github.com/kyotovision-public/extrinsic-camera-calibration-from-a-moving-person
+"""
 import numpy as np
 from pycalib.calib import absolute_orientation
 
