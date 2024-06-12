@@ -1,5 +1,5 @@
-# Pseudo-label based unsupervised fine-tuning of a monocular 3D pose estimation model for sports motions
-This is an official implementation of "Pseudo-label based unsupervised fine-tuning of a monocular 3D pose estimation model for sports motions" at CVsports 2024.
+# [Pseudo-label based unsupervised fine-tuning of a monocular 3D pose estimation model for sports motions](https://openaccess.thecvf.com/content/CVPR2024W/CVsports/html/Suzuki_Pseudo-label_Based_Unsupervised_Fine-tuning_of_a_Monocular_3D_Pose_Estimation_CVPRW_2024_paper.html)
+This is an official implementation of "[Pseudo-label based unsupervised fine-tuning of a monocular 3D pose estimation model for sports motions](https://openaccess.thecvf.com/content/CVPR2024W/CVsports/html/Suzuki_Pseudo-label_Based_Unsupervised_Fine-tuning_of_a_Monocular_3D_Pose_Estimation_CVPRW_2024_paper.html)" at CVsports 2024.
 
 <p align="center"><img src="fig/demo.gif" width="55%" alt="" /></p>
 
@@ -73,8 +73,17 @@ You can download the fine-tuned model weights with each dataset from the link.
 
 
 ## Citation
-Coming soon...
-
+If our work is useful for your project, please consider citing the paper:
+```
+@InProceedings{Suzuki_2024_CVPR,
+    author    = {Suzuki, Tomohiro and Tanaka, Ryota and Takeda, Kazuya and Fujii, Keisuke},
+    title     = {Pseudo-label Based Unsupervised Fine-tuning of a Monocular 3D Pose Estimation Model for Sports Motions},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+    month     = {June},
+    year      = {2024},
+    pages     = {3315-3324}
+}
+```
 
 ## Acknowledgements
 We appreciate the following repositories:
